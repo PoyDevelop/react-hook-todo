@@ -2,7 +2,7 @@ import React from "react";
 import Todo from "./Todo";
 
 
-const TodoList = ({ todoList }) => {
+const TodoList = ({ todoList, removeTask }) => {
 
     return (
         <div>
@@ -10,7 +10,7 @@ const TodoList = ({ todoList }) => {
                 todoList.map((todo, index) => {
                     return (
 
-                        <Todo value={todo} key={index}></Todo>
+                        <Todo value={todo} key={index} onClickRemove={() => removeTask(index)} ></Todo>
                     )
                 })
             }

@@ -1,9 +1,11 @@
 import React from "react";
 
-const Todo = ({ value }) => {
+const Todo = ({ value,onClickRemove }) => {
 
     return (
-        <div className="todoItem">{value} </div>
+        <div className="todoItem">{value}  
+            <button onClick={onClickRemove}>X</button>
+        </div>
     )
 
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TodoList from "./TodoList";
 import Say from "./TodoList";
 
 
@@ -24,12 +25,23 @@ function App() {
     setInputText("");
   }
 
+  const removeTask = (index) => {
+    console.log("remove >>>", index);
+
+
+    let todo = [...todoList];
+    todo.splice(index, 1);
+    setTodoList(todo);
+
+  }
+
+
   return (
     <div className="App">
       <input type="text" value ={inputText} placeholder="ป้อนข้อมูล" onChange={onTextChange}/>
       <button type="button" onClick={addTask}>Save</button>
 
-      <Say todoList={todoList} ></Say>
+      <Say todoList={todoList} removeTask={removeTask}></Say>
 
     </div>
   );
