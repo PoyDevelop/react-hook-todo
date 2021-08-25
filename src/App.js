@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import TodoList from "./TodoList";
 import Say from "./TodoList";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 
 
+const border = css`
+  ${props => {
+    return `
+      border: 1px solid #000;
+      border-radius: 8px;
+      `;
+  }
+  }
+`;
 
 const MainSection = styled.section`
 background: #a5b7f2;
@@ -16,19 +25,24 @@ input[type=text] {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
+  border-radius: 8px;
 }
-`
+`;
 const MainBtn = styled.button`
-  width: 100%;
+  min-width: 150px;
   height: 35px;
   padding: 10px;
   background: #CCC;
+  margin-bottom: 5px;
+  margin-right: 5px;
 
   ${props => props.success && `
-  background: #5fde96;
-  border-color: gold;
+    background: #5fde96;
   `}
-`
+
+  ${border};
+
+`;
 
 function App() {
 
@@ -36,14 +50,14 @@ function App() {
   const [inputText, setInputText] = useState("");
 
   // const onTextChange = (e) => setInputText(e.target.value)
-  const onTextChange = ({target: {value}}) => {
-    console.log("value >>" , value);
+  const onTextChange = ({ target: { value } }) => {
+    console.log("value >>", value);
     setInputText(value)
   }
 
   const addTask = () => {
     setTodoList([
-      ...todoList,inputText
+      ...todoList, inputText
     ]);
 
     setInputText("");
@@ -62,7 +76,7 @@ function App() {
 
   return (
     <MainSection className="App">
-      <input type="text" value ={inputText} placeholder="ป้อนข้อมูล" onChange={onTextChange}/>
+      <input type="text" value={inputText} placeholder="ป้อนข้อมูล" onChange={onTextChange} />
       <MainBtn type="button" onClick={addTask}>Save</MainBtn>
       <MainBtn success onClick={addTask}>Save</MainBtn>
 
